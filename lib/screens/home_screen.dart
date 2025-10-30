@@ -7,6 +7,7 @@ import '../providers/notes_provider.dart';
 import '../models/note.dart';
 import 'create_note_screen.dart';
 import 'note_detail_screen.dart';
+import 'login_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   static const routeName = '/home';
@@ -48,7 +49,11 @@ class _HomeScreenState extends State<HomeScreen> {
     final notes = notesProv.notes;
     final filtered = _query.isEmpty
         ? notes
-        : notes.where((n) => (n.title).toLowerCase().contains(_query.toLowerCase())).toList();
+        : notes
+              .where(
+                (n) => (n.title).toLowerCase().contains(_query.toLowerCase()),
+              )
+              .toList();
 
     return Scaffold(
       appBar: AppBar(
@@ -63,29 +68,33 @@ class _HomeScreenState extends State<HomeScreen> {
                 hintText: 'Cari berdasarkan judul...',
                 prefixIcon: const Icon(Icons.search),
                 isDense: true,
-                contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
-                border: OutlineInputBorder(borderRadius: BorderRadius.circular(12)),
+                contentPadding: const EdgeInsets.symmetric(
+                  vertical: 12,
+                  horizontal: 12,
+                ),
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
               ),
             ),
           ),
         ),
         actions: [
           IconButton(
-            icon: const Icon(Icons.refresh),
-            tooltip: 'Refresh',
-            onPressed: () => context.read<NotesProvider>().fetchNotes(),
-          ),
-          IconButton(
             icon: const Icon(Icons.logout),
             tooltip: 'Logout',
             onPressed: () async {
               await context.read<AuthProvider>().logout();
               if (!context.mounted) return;
-              ScaffoldMessenger.of(context).showSnackBar(
-                const SnackBar(content: Text('Logged out')),
+              ScaffoldMessenger.of(
+                context,
+              ).showSnackBar(const SnackBar(content: Text('Logged out')));
+              Navigator.of(context).pushNamedAndRemoveUntil(
+                LoginScreen.routeName,
+                (route) => false,
               );
             },
-          )
+          ),
         ],
       ),
       floatingActionButton: FloatingActionButton(
@@ -105,7 +114,9 @@ class _HomeScreenState extends State<HomeScreen> {
               return Center(child: Text(notesProv.error!));
             }
             if (notesProv.notes.isEmpty) {
-              return const Center(child: Text('Belum ada catatan. Klik + untuk menambah.'));
+              return const Center(
+                child: Text('Belum ada catatan. Klik + untuk menambah.'),
+              );
             }
             if (filtered.isEmpty) {
               return const Center(child: Text('Tidak ada catatan yang cocok.'));
@@ -151,7 +162,11 @@ class _NoteCard extends StatelessWidget {
   final Note note;
   final String dateText;
   final VoidCallback onTap;
-  const _NoteCard({required this.note, required this.dateText, required this.onTap});
+  const _NoteCard({
+    required this.note,
+    required this.dateText,
+    required this.onTap,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -169,12 +184,16 @@ class _NoteCard extends StatelessWidget {
                 note.title.isEmpty ? '(Tanpa judul)' : note.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
-                style: Theme.of(context).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
+                style: Theme.of(
+                  context,
+                ).textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               Text(
                 dateText,
-                style: Theme.of(context).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
+                style: Theme.of(
+                  context,
+                ).textTheme.bodySmall?.copyWith(color: Colors.grey[600]),
               ),
               const SizedBox(height: 8),
               Expanded(

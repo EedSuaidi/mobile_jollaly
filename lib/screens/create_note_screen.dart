@@ -35,9 +35,9 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
     if (!mounted) return;
     setState(() => _submitting = false);
     if (note != null) {
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Note berhasil dibuat')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Note berhasil dibuat')));
       Navigator.of(context).pop();
     } else {
       final msg = notes.error ?? 'Gagal membuat note';
@@ -65,7 +65,9 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                       labelText: 'Judul',
                       hintText: 'Masukkan judul catatan',
                     ),
-                    validator: (v) => (v == null || v.trim().isEmpty) ? 'Judul wajib diisi' : null,
+                    validator: (v) => (v == null || v.trim().isEmpty)
+                        ? 'Judul wajib diisi'
+                        : null,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
@@ -77,13 +79,22 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                     ),
                     maxLines: 12,
                     minLines: 8,
-                    validator: (v) => (v == null || v.trim().isEmpty) ? 'Konten wajib diisi' : null,
+                    validator: (v) => (v == null || v.trim().isEmpty)
+                        ? 'Konten wajib diisi'
+                        : null,
                   ),
                   const SizedBox(height: 20),
                   FilledButton.icon(
                     onPressed: _submitting ? null : _submit,
                     icon: _submitting
-                        ? const SizedBox(height: 18, width: 18, child: CircularProgressIndicator(strokeWidth: 2, color: Colors.white))
+                        ? const SizedBox(
+                            height: 18,
+                            width: 18,
+                            child: CircularProgressIndicator(
+                              strokeWidth: 2,
+                              color: Colors.white,
+                            ),
+                          )
                         : const Icon(Icons.check),
                     label: const Text('Simpan'),
                   ),

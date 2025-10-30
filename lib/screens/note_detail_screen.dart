@@ -50,7 +50,7 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
     final dt = n.updatedAt ?? n.createdAt;
     if (dt == null) return '';
     return DateFormat('dd MMM yyyy, HH:mm').format(dt);
-    }
+  }
 
   Future<void> _save() async {
     if (!(_formKey.currentState?.validate() ?? false) || _note == null) return;
@@ -64,9 +64,9 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
     setState(() => _saving = false);
     if (updated != null) {
       setState(() => _note = updated);
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Perubahan disimpan')),
-      );
+      ScaffoldMessenger.of(
+        context,
+      ).showSnackBar(const SnackBar(content: Text('Perubahan disimpan')));
     } else {
       final msg = context.read<NotesProvider>().error ?? 'Gagal menyimpan';
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
@@ -81,8 +81,14 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
         title: const Text('Hapus Catatan'),
         content: const Text('Anda yakin ingin menghapus catatan ini?'),
         actions: [
-          TextButton(onPressed: () => Navigator.of(ctx).pop(false), child: const Text('Batal')),
-          FilledButton(onPressed: () => Navigator.of(ctx).pop(true), child: const Text('Hapus')),
+          TextButton(
+            onPressed: () => Navigator.of(ctx).pop(false),
+            child: const Text('Batal'),
+          ),
+          FilledButton(
+            onPressed: () => Navigator.of(ctx).pop(true),
+            child: const Text('Hapus'),
+          ),
         ],
       ),
     );
@@ -91,7 +97,9 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
     await context.read<NotesProvider>().remove(_note!.id);
     if (!mounted) return;
     setState(() => _deleting = false);
-    ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('Note dihapus')));
+    ScaffoldMessenger.of(
+      context,
+    ).showSnackBar(const SnackBar(content: Text('Note dihapus')));
     Navigator.of(context).pop();
   }
 
@@ -110,16 +118,13 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
         title: const Text('Detail Catatan'),
         actions: [
           IconButton(
-            onPressed: _saving ? null : _save,
-            icon: _saving
-                ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
-                : const Icon(Icons.save),
-            tooltip: 'Simpan',
-          ),
-          IconButton(
             onPressed: (_saving || _deleting) ? null : _confirmDelete,
             icon: _deleting
-                ? const SizedBox(height: 20, width: 20, child: CircularProgressIndicator(strokeWidth: 2))
+                ? const SizedBox(
+                    height: 20,
+                    width: 20,
+                    child: CircularProgressIndicator(strokeWidth: 2),
+                  )
                 : const Icon(Icons.delete_outline),
             tooltip: 'Hapus',
           ),
@@ -135,14 +140,17 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  Text('Terakhir diperbarui: ${_formatDate(note)}', style: Theme.of(context).textTheme.bodySmall),
+                  Text(
+                    'Terakhir diperbarui: ${_formatDate(note)}',
+                    style: Theme.of(context).textTheme.bodySmall,
+                  ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _titleCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Judul',
-                    ),
-                    validator: (v) => (v == null || v.trim().isEmpty) ? 'Judul wajib diisi' : null,
+                    decoration: const InputDecoration(labelText: 'Judul'),
+                    validator: (v) => (v == null || v.trim().isEmpty)
+                        ? 'Judul wajib diisi'
+                        : null,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
@@ -153,7 +161,9 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
                     ),
                     maxLines: 14,
                     minLines: 8,
-                    validator: (v) => (v == null || v.trim().isEmpty) ? 'Konten wajib diisi' : null,
+                    validator: (v) => (v == null || v.trim().isEmpty)
+                        ? 'Konten wajib diisi'
+                        : null,
                   ),
                   const SizedBox(height: 20),
                   FilledButton.icon(
