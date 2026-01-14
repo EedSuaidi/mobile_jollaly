@@ -5,6 +5,8 @@ class Note {
   final String userId;
   final DateTime? createdAt;
   final DateTime? updatedAt;
+  bool isFavorite;
+  bool isArchived;
 
   Note({
     required this.id,
@@ -13,6 +15,8 @@ class Note {
     required this.userId,
     this.createdAt,
     this.updatedAt,
+    this.isFavorite = false,
+    this.isArchived = false,
   });
 
   factory Note.fromJson(Map<String, dynamic> json) {
@@ -27,6 +31,8 @@ class Note {
       updatedAt: json['updatedAt'] != null
           ? DateTime.tryParse(json['updatedAt'] as String)
           : null,
+      isFavorite: (json['isFavorite'] ?? false) as bool,
+      isArchived: (json['isArchived'] ?? false) as bool,
     );
   }
 
@@ -35,6 +41,8 @@ class Note {
     'title': title,
     'content': content,
     'userId': userId,
+    'isFavorite': isFavorite,
+    'isArchived': isArchived,
     if (createdAt != null) 'createdAt': createdAt!.toIso8601String(),
     if (updatedAt != null) 'updatedAt': updatedAt!.toIso8601String(),
   };

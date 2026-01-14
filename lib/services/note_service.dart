@@ -18,10 +18,15 @@ class NoteService {
     if (token != null) HttpHeaders.authorizationHeader: 'Bearer $token',
   };
 
-  Future<List<Note>> getNotes() async {
+  Future<List<Note>> getNotes({bool? isFavorite, bool? isArchived}) async {
     final token = await _getToken();
-    final url = Uri.parse('${AuthService.apiBase}/notes');
-    final resp = await http.get(url, headers: _headers(token));
+    final uri = Uri.parse('${AuthService.apiBase}/notes').replace(
+      queryParameters: {
+        if (isFavorite != null) 'isFavorite': isFavorite.toString(),
+        if (isArchived != null) 'isArchived': isArchived.toString(),
+      },
+    );
+    final resp = await http.get(uri, headers: _headers(token));
     final decoded = jsonDecode(resp.body) as Map<String, dynamic>;
     if (resp.statusCode == 200 && decoded['success'] == true) {
       final list = (decoded['data'] as List)
@@ -66,12 +71,16 @@ class NoteService {
     required String id,
     String? title,
     String? content,
+    bool? isFavorite,
+    bool? isArchived,
   }) async {
     final token = await _getToken();
     final url = Uri.parse('${AuthService.apiBase}/notes/$id');
     final body = <String, dynamic>{};
     if (title != null) body['title'] = title;
     if (content != null) body['content'] = content;
+    if (isFavorite != null) body['isFavorite'] = isFavorite;
+    if (isArchived != null) body['isArchived'] = isArchived;
     final resp = await http.put(
       url,
       headers: _headers(token),
@@ -93,5 +102,13 @@ class NoteService {
       return;
     }
     throw Exception(decoded['message'] ?? 'Failed to delete note');
+  }
+
+  Future<Note> toggleFavorite(Note note) async {
+    return updateNote(id: note.id, isFavorite: !note.isFavorite);
+  }
+
+  Future<Note> toggleArchived(Note note) async {
+    return updateNote(id: note.id, isArchived: !note.isArchived);
   }
 }

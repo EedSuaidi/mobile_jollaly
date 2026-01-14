@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../providers/notes_provider.dart';
+import '../providers/settings_provider.dart';
 
 class CreateNoteScreen extends StatefulWidget {
   static const routeName = '/notes/create';
@@ -47,8 +48,32 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final settings = context.watch<SettingsProvider>();
+    final isId = settings.locale.languageCode == 'id';
+    final isDark = Theme.of(context).brightness == Brightness.dark;
     return Scaffold(
-      appBar: AppBar(title: const Text('Buat Catatan')),
+      appBar: AppBar(
+        title: Text(isId ? 'Buat Catatan' : 'Create Note'),
+        actions: [
+          IconButton(
+            tooltip: isId ? 'Ubah bahasa' : 'Change language',
+            icon: const Icon(Icons.g_translate),
+            onPressed: () {
+              final next = isId ? const Locale('en') : const Locale('id');
+              context.read<SettingsProvider>().setLocale(next);
+            },
+          ),
+          IconButton(
+            tooltip: settings.themeMode == ThemeMode.light ? 'Gelap' : 'Terang',
+            icon: Icon(
+              settings.themeMode == ThemeMode.light
+                  ? Icons.light_mode
+                  : Icons.dark_mode,
+            ),
+            onPressed: () => context.read<SettingsProvider>().toggleTheme(),
+          ),
+        ],
+      ),
       body: SingleChildScrollView(
         padding: const EdgeInsets.all(16),
         child: Center(
@@ -61,26 +86,30 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                 children: [
                   TextFormField(
                     controller: _titleCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Judul',
-                      hintText: 'Masukkan judul catatan',
+                    decoration: InputDecoration(
+                      labelText: isId ? 'Judul' : 'Title',
+                      hintText: isId
+                          ? 'Masukkan judul catatan'
+                          : 'Enter note title',
                     ),
                     validator: (v) => (v == null || v.trim().isEmpty)
-                        ? 'Judul wajib diisi'
+                        ? (isId ? 'Judul wajib diisi' : 'Title is required')
                         : null,
                   ),
                   const SizedBox(height: 12),
                   TextFormField(
                     controller: _contentCtrl,
-                    decoration: const InputDecoration(
-                      labelText: 'Konten',
-                      hintText: 'Tulis isi catatan di sini...',
+                    decoration: InputDecoration(
+                      labelText: isId ? 'Konten' : 'Content',
+                      hintText: isId
+                          ? 'Tulis isi catatan di sini...'
+                          : 'Write your note here...',
                       alignLabelWithHint: true,
                     ),
                     maxLines: 12,
                     minLines: 8,
                     validator: (v) => (v == null || v.trim().isEmpty)
-                        ? 'Konten wajib diisi'
+                        ? (isId ? 'Konten wajib diisi' : 'Content is required')
                         : null,
                   ),
                   const SizedBox(height: 20),
@@ -96,7 +125,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
                             ),
                           )
                         : const Icon(Icons.check),
-                    label: const Text('Simpan'),
+                    label: Text(isId ? 'Simpan' : 'Save'),
                   ),
                 ],
               ),
