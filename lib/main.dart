@@ -84,8 +84,8 @@ class MyApp extends StatelessWidget {
             ),
             darkTheme: baseDark.copyWith(textTheme: darkText),
 
-            // KUNCI UTAMA:
-            initialRoute: SplashScreen.routeName, // Ini mengarah ke '/'
+            
+            initialRoute: SplashScreen.routeName, 
             
             routes: {
               SplashScreen.routeName: (_) => const SplashScreen(),

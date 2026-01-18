@@ -6,7 +6,7 @@ import 'login_screen.dart';
 import 'home_screen.dart';
 
 class SplashScreen extends StatefulWidget {
-  // PAKSA route name menjadi '/'
+  
   static const routeName = '/'; 
   const SplashScreen({super.key});
 
@@ -32,7 +32,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
 
     _controller.forward();
 
-    // Gunakan Timer untuk menahan layar selama 3 detik
+    
     Timer(const Duration(seconds: 3), () {
       _checkAuthAndNavigate();
     });
@@ -41,7 +41,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
   void _checkAuthAndNavigate() {
     if (!mounted) return;
     
-    // Ambil status auth tanpa mendengarkan perubahan (listen: false)
+    
     final auth = Provider.of<AuthProvider>(context, listen: false);
     
     if (auth.isAuthenticated) {
@@ -69,7 +69,7 @@ class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderSt
             style: TextStyle(
               fontSize: 64,
               fontWeight: FontWeight.w900,
-              color: Color(0xFF0A73FF), // Biru Jollaly
+              color: Color(0xFF0A73FF), 
               letterSpacing: -2,
             ),
           ),
