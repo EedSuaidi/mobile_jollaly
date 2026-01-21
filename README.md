@@ -146,9 +146,9 @@ Backend repositori dan pengaturan env tidak dibahas di sini, namun garis besar:
 
 ### Kontribusi Anggota Kelompok
 
- 1. 5230411264 Rizal
- 2. 5230411265 Agung
- 3. 5230411271 Eed
+ 1. 5230411264 Maulana Rizal A
+ 2. 5230411265 Agung Rizky 
+ 3. 5230411271 Moh. Su'aidi
  4. 5230411318 Fahmi Abdurrahman -> Menambah splash_screen.dart di lib/screens dan mengubah main.dart commit push di branch feature/splash_screen
 
 ## Lisensi
