@@ -144,6 +144,13 @@ Backend repositori dan pengaturan env tidak dibahas di sini, namun garis besar:
 - Token tidak terkirim: pastikan Authorization Bearer ditambahkan oleh NoteService
 - Asset tidak muncul: pastikan lib/assets/illustration.png terdaftar di pubspec.yaml dan lakukan hot restart
 
+### Kontribusi Anggota Kelompok
+
+ 1. 5230411264 Rizal
+ 2. 5230411265 Agung
+ 3. 5230411271 Eed
+ 4. 5230411318 Fahmi Abdurrahman -> Menambah splash_screen.dart di lib/screens dan mengubah main.dart commit push di branch feature/splash_screen
+
 ## Lisensi
 
 Proyek ini untuk pembelajaran/prototyping. Sesuaikan lisensi sesuai kebutuhan.
