@@ -2,8 +2,6 @@
 
 Jollaly adalah aplikasi catatan digital dengan autentikasi, manajemen catatan (buat, lihat, edit, hapus), favorit, arsip, pencarian, dark mode, dan dukungan multi-bahasa (Indonesia/Inggris). Aplikasi ini dibangun menggunakan Flutter dan berkomunikasi dengan backend RESTful API berbasis Node.js (Express + Prisma + PostgreSQL).
 
-<<<<<<< HEAD
-=======
 ### Kontribusi Anggota Kelompok
 
 1. 5230411264 Maulana Rizal A -> Mengganti font lib/screens dari default font menjadi family font Montserrat.
@@ -11,7 +9,6 @@ Jollaly adalah aplikasi catatan digital dengan autentikasi, manajemen catatan (b
 3. 5230411271 Moh. Su'aidi -> Membuat sistem backend (Register, Login, Tambah Catatan, Detail Catatan, Edit Catatan, Hapus Catatan) dan mobile (Pencarian, Dark Mode, Translate, Favorit, Arsip)
 4. 5230411318 Fahmi Abdurrahman -> Menambahkan splash_screen.dart di lib/screens.
 
->>>>>>> add-font
 ## Fitur Utama
 
 - Autentikasi pengguna: Register, Login, Logout
@@ -154,16 +151,6 @@ Backend repositori dan pengaturan env tidak dibahas di sini, namun garis besar:
 - Token tidak terkirim: pastikan Authorization Bearer ditambahkan oleh NoteService
 - Asset tidak muncul: pastikan lib/assets/illustration.png terdaftar di pubspec.yaml dan lakukan hot restart
 
-<<<<<<< HEAD
-### Kontribusi Anggota Kelompok
-
-1. 5230411264 Maulana Rizal A
-2. 5230411265 Agung Rizky 
-3. 5230411271 Moh. Su'aidi
-4. 5230411318 Fahmi Abdurrahman
-
-=======
->>>>>>> add-font
 ## Lisensi
 
 Proyek ini untuk pembelajaran/prototyping.

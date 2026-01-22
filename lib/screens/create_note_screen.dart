@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-=======
 import 'package:google_fonts/google_fonts.dart';
->>>>>>> add-font
 
 import '../providers/notes_provider.dart';
 import '../providers/settings_provider.dart';
@@ -123,18 +120,6 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
     final isId = settings.locale.languageCode == 'id';
     
     // 5. Bungkus Scaffold pake PopScope (Pengganti WillPopScope di Flutter baru)
-<<<<<<< HEAD
-    return PopScope(
-      canPop: false, // Default kita block, kita handle manual di onPopInvoked
-      onPopInvoked: (didPop) async {
-        if (didPop) return;
-        final shouldPop = await _onWillPop();
-        if (shouldPop && context.mounted) {
-          Navigator.of(context).pop();
-        }
-      },
-      child: Scaffold(
-=======
     final baseTextStyle = GoogleFonts.montserrat(
       textStyle: Theme.of(context).textTheme.bodyMedium,
     );
@@ -144,7 +129,6 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
       child: WillPopScope(
         onWillPop: _onWillPop,
         child: Scaffold(
->>>>>>> add-font
         appBar: AppBar(
           title: Text(isId ? 'Buat Catatan' : 'Create Note'),
           actions: [
@@ -239,10 +223,7 @@ class _CreateNoteScreenState extends State<CreateNoteScreen> {
             ),
           ),
         ),
-<<<<<<< HEAD
-=======
         ),
->>>>>>> add-font
       ),
     );
   }

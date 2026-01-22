@@ -1,9 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-=======
 import 'package:google_fonts/google_fonts.dart';
->>>>>>> add-font
 
 import '../providers/auth_provider.dart';
 import '../providers/settings_provider.dart';
@@ -106,12 +103,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                   Text(
                     'Jollaly',
-<<<<<<< HEAD
-                    style: Theme.of(context).textTheme.displaySmall?.copyWith(
-                      fontWeight: FontWeight.w800,
-                      color: isDark ? Colors.white : Colors.black,
-                      letterSpacing: -0.5,
-=======
                     style: GoogleFonts.montserrat(
                       textStyle: Theme.of(context).textTheme.displaySmall
                           ?.copyWith(
@@ -119,7 +110,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             color: isDark ? Colors.white : Colors.black,
                             letterSpacing: -0.5,
                           ),
->>>>>>> add-font
                     ),
                   ),
                   const SizedBox(height: 16),
@@ -132,13 +122,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       boxShadow: [
                         BoxShadow(
                           color: isDark
-<<<<<<< HEAD
-                              ? Colors.black.withOpacity(0.2)
-                              : Colors.black.withOpacity(0.04),
-=======
                               ? Colors.black.withAlpha((0.2 * 255).round())
                               : Colors.black.withAlpha((0.04 * 255).round()),
->>>>>>> add-font
                           blurRadius: 20,
                           offset: const Offset(0, 8),
                         ),
@@ -170,13 +155,8 @@ class _LoginScreenState extends State<LoginScreen> {
                       boxShadow: [
                         BoxShadow(
                           color: isDark
-<<<<<<< HEAD
-                              ? Colors.black.withOpacity(0.3)
-                              : Colors.black.withOpacity(0.03),
-=======
                               ? Colors.black.withAlpha((0.3 * 255).round())
                               : Colors.black.withAlpha((0.03 * 255).round()),
->>>>>>> add-font
                           blurRadius: 24,
                           offset: const Offset(0, 12),
                         ),
@@ -195,16 +175,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             keyboardType: TextInputType.emailAddress,
                             validator: (v) {
-<<<<<<< HEAD
-                              if (v == null || v.trim().isEmpty)
-                                return isId
-                                    ? 'Email wajib diisi'
-                                    : 'Email is required';
-                              if (!v.contains('@'))
-                                return isId
-                                    ? 'Email tidak valid'
-                                    : 'Invalid email';
-=======
                               if (v == null || v.trim().isEmpty) {
                                 return isId
                                     ? 'Email wajib diisi'
@@ -215,7 +185,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ? 'Email tidak valid'
                                     : 'Invalid email';
                               }
->>>>>>> add-font
                               return null;
                             },
                           ),
@@ -237,16 +206,6 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                             obscureText: _obscure,
                             validator: (v) {
-<<<<<<< HEAD
-                              if (v == null || v.isEmpty)
-                                return isId
-                                    ? 'Password wajib diisi'
-                                    : 'Password is required';
-                              if (v.length < 6)
-                                return isId
-                                    ? 'Minimal 6 karakter'
-                                    : 'Minimum 6 characters';
-=======
                               if (v == null || v.isEmpty) {
                                 return isId
                                     ? 'Password wajib diisi'
@@ -257,7 +216,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                     ? 'Minimal 6 karakter'
                                     : 'Minimum 6 characters';
                               }
->>>>>>> add-font
                               return null;
                             },
                           ),
@@ -288,16 +246,11 @@ class _LoginScreenState extends State<LoginScreen> {
                         isId
                             ? 'Belum punya akun? '
                             : 'Don\'t have an account? ',
-<<<<<<< HEAD
-                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: isDark ? Colors.white70 : Colors.black87,
-=======
                         style: GoogleFonts.montserrat(
                           textStyle: Theme.of(context).textTheme.bodyMedium
                               ?.copyWith(
                                 color: isDark ? Colors.white70 : Colors.black87,
                               ),
->>>>>>> add-font
                         ),
                       ),
                       InkWell(
@@ -308,13 +261,6 @@ class _LoginScreenState extends State<LoginScreen> {
                               ).pushNamed(RegisterScreen.routeName),
                         child: Text(
                           isId ? 'Daftar' : 'Register',
-<<<<<<< HEAD
-                          style: Theme.of(context).textTheme.bodyMedium
-                              ?.copyWith(
-                                color: primary,
-                                fontWeight: FontWeight.w700,
-                              ),
-=======
                           style: GoogleFonts.montserrat(
                             textStyle: Theme.of(context).textTheme.bodyMedium
                                 ?.copyWith(
@@ -322,7 +268,6 @@ class _LoginScreenState extends State<LoginScreen> {
                                   fontWeight: FontWeight.w700,
                                 ),
                           ),
->>>>>>> add-font
                         ),
                       ),
                     ],

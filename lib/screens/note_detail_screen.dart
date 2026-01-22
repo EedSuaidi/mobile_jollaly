@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-<<<<<<< HEAD
-=======
 import 'package:google_fonts/google_fonts.dart';
->>>>>>> add-font
 
 import '../models/note.dart';
 import '../providers/notes_provider.dart';
@@ -60,13 +57,9 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
   Future<void> _save() async {
     if (!(_formKey.currentState?.validate() ?? false) || _note == null) return;
     setState(() => _saving = true);
-<<<<<<< HEAD
-    final updated = await context.read<NotesProvider>().update(
-=======
     final notesProv = context.read<NotesProvider>();
     final settingsProv = context.read<SettingsProvider>();
     final updated = await notesProv.update(
->>>>>>> add-font
       id: _note!.id,
       title: _titleCtrl.text.trim(),
       content: _contentCtrl.text.trim(),
@@ -75,24 +68,14 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
     setState(() => _saving = false);
     if (updated != null) {
       setState(() => _note = updated);
-<<<<<<< HEAD
-      final isId = context.read<SettingsProvider>().locale.languageCode == 'id';
-=======
       final isId = settingsProv.locale.languageCode == 'id';
->>>>>>> add-font
       ScaffoldMessenger.of(context).showSnackBar(
         SnackBar(content: Text(isId ? 'Perubahan disimpan' : 'Changes saved')),
       );
     } else {
-<<<<<<< HEAD
-      final isId = context.read<SettingsProvider>().locale.languageCode == 'id';
-      final fallback = isId ? 'Gagal menyimpan' : 'Failed to save';
-      final msg = context.read<NotesProvider>().error ?? fallback;
-=======
       final isId = settingsProv.locale.languageCode == 'id';
       final fallback = isId ? 'Gagal menyimpan' : 'Failed to save';
       final msg = notesProv.error ?? fallback;
->>>>>>> add-font
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(msg)));
     }
   }
@@ -218,14 +201,9 @@ class _NoteDetailScreenState extends State<NoteDetailScreen> {
                 children: [
                   Text(
                     '${isId ? 'Terakhir diperbarui' : 'Last updated'}: ${_formatDate(note)}',
-<<<<<<< HEAD
-                    style: Theme.of(context).textTheme.bodySmall?.copyWith(
-                      color: isDark ? Colors.white70 : null,
-=======
                     style: GoogleFonts.montserrat(
                       textStyle: Theme.of(context).textTheme.bodySmall
                           ?.copyWith(color: isDark ? Colors.white70 : null),
->>>>>>> add-font
                     ),
                   ),
                   const SizedBox(height: 12),
