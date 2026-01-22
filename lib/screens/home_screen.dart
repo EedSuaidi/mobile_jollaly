@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
+<<<<<<< HEAD
+=======
+import 'package:google_fonts/google_fonts.dart';
+>>>>>>> add-font
 
 import '../providers/auth_provider.dart';
 import '../providers/notes_provider.dart';
@@ -26,7 +30,13 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+<<<<<<< HEAD
     Future.microtask(() => context.read<NotesProvider>().fetchNotes());
+=======
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      context.read<NotesProvider>().fetchNotes();
+    });
+>>>>>>> add-font
     _searchCtrl.addListener(() {
       setState(() => _query = _searchCtrl.text.trim());
     });
@@ -160,9 +170,18 @@ class _HomeScreenState extends State<HomeScreen> {
                 const SizedBox(height: 8),
                 Text(
                   settings.locale.languageCode == 'id' ? 'Catatan' : 'Notes',
+<<<<<<< HEAD
                   style: Theme.of(context).textTheme.displaySmall?.copyWith(
                     fontWeight: FontWeight.w800,
                     color: isDark ? Colors.white : Colors.black,
+=======
+                  style: GoogleFonts.montserrat(
+                    textStyle: Theme.of(context).textTheme.displaySmall
+                        ?.copyWith(
+                          fontWeight: FontWeight.w800,
+                          color: isDark ? Colors.white : Colors.black,
+                        ),
+>>>>>>> add-font
                   ),
                 ),
                 const SizedBox(height: 16),
@@ -223,9 +242,17 @@ class _HomeScreenState extends State<HomeScreen> {
                   settings.locale.languageCode == 'id'
                       ? 'Catatan Terbaru'
                       : 'Latest Notes',
+<<<<<<< HEAD
                   style: Theme.of(
                     context,
                   ).textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w800),
+=======
+                  style: GoogleFonts.montserrat(
+                    textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                      fontWeight: FontWeight.w800,
+                    ),
+                  ),
+>>>>>>> add-font
                 ),
                 const SizedBox(height: 12),
                 if (notesProv.isLoading && notesProv.notes.isEmpty)
@@ -321,6 +348,7 @@ class _FilterButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+<<<<<<< HEAD
     final textStyle = Theme.of(context).textTheme.titleMedium?.copyWith(
       fontWeight: FontWeight.w700,
       color: active ? Colors.white : Colors.black87,
@@ -328,6 +356,17 @@ class _FilterButton extends StatelessWidget {
     final iconColor = active ? Colors.white : Colors.grey.shade700;
     final avatarBg = active
         ? Colors.white.withOpacity(0.2)
+=======
+    final textStyle = GoogleFonts.montserrat(
+      textStyle: Theme.of(context).textTheme.titleMedium?.copyWith(
+        fontWeight: FontWeight.w700,
+        color: active ? Colors.white : Colors.black87,
+      ),
+    );
+    final iconColor = active ? Colors.white : Colors.grey.shade700;
+    final avatarBg = active
+        ? Colors.white.withAlpha((0.2 * 255).round())
+>>>>>>> add-font
         : Colors.grey.shade300;
 
     return InkWell(
@@ -340,7 +379,11 @@ class _FilterButton extends StatelessWidget {
           borderRadius: BorderRadius.circular(16),
           boxShadow: [
             BoxShadow(
+<<<<<<< HEAD
               color: Colors.black.withOpacity(0.04),
+=======
+              color: Colors.black.withAlpha((0.04 * 255).round()),
+>>>>>>> add-font
               blurRadius: 10,
               offset: const Offset(0, 6),
             ),
@@ -404,9 +447,17 @@ class _NoteCard extends StatelessWidget {
                     : note.title,
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
+<<<<<<< HEAD
                 style: Theme.of(context).textTheme.titleLarge?.copyWith(
                   fontWeight: FontWeight.w700,
                   color: isDark ? Colors.white : null,
+=======
+                style: GoogleFonts.montserrat(
+                  textStyle: Theme.of(context).textTheme.titleLarge?.copyWith(
+                    fontWeight: FontWeight.w700,
+                    color: isDark ? Colors.white : null,
+                  ),
+>>>>>>> add-font
                 ),
               ),
               const SizedBox(height: 8),
@@ -415,8 +466,15 @@ class _NoteCard extends StatelessWidget {
                   note.content,
                   maxLines: 5,
                   overflow: TextOverflow.ellipsis,
+<<<<<<< HEAD
                   style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: isDark ? Colors.white70 : null,
+=======
+                  style: GoogleFonts.montserrat(
+                    textStyle: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                      color: isDark ? Colors.white70 : null,
+                    ),
+>>>>>>> add-font
                   ),
                 ),
               ),
@@ -431,8 +489,14 @@ class _NoteCard extends StatelessWidget {
                   Expanded(
                     child: Text(
                       dateText,
+<<<<<<< HEAD
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: isDark ? Colors.white70 : null,
+=======
+                      style: GoogleFonts.montserrat(
+                        textStyle: Theme.of(context).textTheme.bodyMedium
+                            ?.copyWith(color: isDark ? Colors.white70 : null),
+>>>>>>> add-font
                       ),
                     ),
                   ),

@@ -9,6 +9,10 @@ import 'providers/settings_provider.dart';
 import 'screens/login_screen.dart';
 import 'screens/register_screen.dart';
 import 'screens/home_screen.dart';
+<<<<<<< HEAD
+=======
+import 'screens/splash_screen.dart';
+>>>>>>> add-font
 import 'screens/create_note_screen.dart';
 import 'screens/note_detail_screen.dart';
 
@@ -100,7 +104,11 @@ class MyApp extends StatelessWidget {
               ),
             ),
             darkTheme: baseDark.copyWith(textTheme: darkText),
+<<<<<<< HEAD
             home: const AuthGate(),
+=======
+            home: const SplashScreen(),
+>>>>>>> add-font
             routes: {
               LoginScreen.routeName: (_) => const LoginScreen(),
               RegisterScreen.routeName: (_) => const RegisterScreen(),
